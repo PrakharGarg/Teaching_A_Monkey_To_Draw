@@ -14,7 +14,7 @@ def compare_images(imageA, imageB, title):
 
 	# setup the figure
 	fig = plt.figure(title)
-	plt.suptitle("SSIM: %.2f" % s)
+	plt.suptitle("SSIM: %.4f" % s)
 
 	# show first image
 	ax = fig.add_subplot(1, 2, 1)
@@ -33,7 +33,7 @@ def start_comparison(r,w) :
     t = str((r.readline()).strip())
     # load the images -- the original, the original + contrast,
     # and the original + photoshop
-    original = cv2.imread("images/lisa.png")
+    original = cv2.imread("images/square_1.png")
     compare = cv2.imread(t)
 
 
@@ -57,5 +57,4 @@ def start_comparison(r,w) :
     plt.show()
 
     # compare the images
-    compare_images(original, original, "Original vs. Original")
     compare_images(original, compare, "Original vs. Compare")
