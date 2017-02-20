@@ -28,32 +28,34 @@ def compare_images(imageA, imageB, title):
 
 	# show the images
 	plt.show()
+    
+def start_comparison(r,w) :
+    t = str((r.readline()).strip())
+    # load the images -- the original, the original + contrast,
+    # and the original + photoshop
+    original = cv2.imread("images/lisa.png")
+    compare = cv2.imread(t)
 
-# load the images -- the original, the original + contrast,
-# and the original + photoshop
-original = cv2.imread("images/lisa.png")
-compare = cv2.imread("images/lisa.png")
 
+    # convert the images to grayscale
+    original = cv2.cvtColor(original, cv2.COLOR_BGR2GRAY)
+    compare = cv2.cvtColor(compare, cv2.COLOR_BGR2GRAY)
 
-# convert the images to grayscale
-original = cv2.cvtColor(original, cv2.COLOR_BGR2GRAY)
-compare = cv2.cvtColor(compare, cv2.COLOR_BGR2GRAY)
+    # initialize the figure
+    fig = plt.figure("Images")
+    images = ("Original", original), ("Compare", compare)
 
-# initialize the figure
-fig = plt.figure("Images")
-images = ("Original", original), ("Compare", compare)
+    # loop over the images
+    for (i, (name, image)) in enumerate(images):
+    	# show the image
+    	ax = fig.add_subplot(1, 3, i + 1)
+    	ax.set_title(name)
+    	plt.imshow(image, cmap = plt.cm.gray)
+    	plt.axis("off")
 
-# loop over the images
-for (i, (name, image)) in enumerate(images):
-	# show the image
-	ax = fig.add_subplot(1, 3, i + 1)
-	ax.set_title(name)
-	plt.imshow(image, cmap = plt.cm.gray)
-	plt.axis("off")
+    # show the figure
+    plt.show()
 
-# show the figure
-plt.show()
-
-# compare the images
-compare_images(original, original, "Original vs. Original")
-compare_images(original, compare, "Original vs. Compare")
+    # compare the images
+    compare_images(original, original, "Original vs. Original")
+    compare_images(original, compare, "Original vs. Compare")
