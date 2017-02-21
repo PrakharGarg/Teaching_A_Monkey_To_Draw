@@ -1,19 +1,23 @@
 import turtle as T
 import canvasvg
 import os
+from random import randint
 
-T.setup(width=500, height=500, startx=0, starty=0)
-T.forward(90)
-T.left(90)
-T.forward(90)
-T.left(90)
-T.forward(90)
-T.left(90)
-T.forward(90)
-T.left(90)
+def make_photo(index):
+    T.speed(0)
 
-T.hideturtle()
-ts = T.getscreen().getcanvas()
-canvasvg.saveall("image.svg",ts)
+    T.setup(width=100, height=100, startx=0, starty=0)
+    for x in range(4) :
+        # print(T.xcor())
+        coord = (randint(-50,50), randint(-50,50))
+        # print(coord)
+        T.goto(coord)
 
-os.system("convert -size 500x500 image.svg square_1.png")
+    T.hideturtle()
+    ts = T.getscreen().getcanvas()
+    canvasvg.saveall("image.svg",ts)
+    T.clear()
+    script = "convert -size 100x100 image.svg images/square_" + str(index)  + ".png"
+
+    os.system(script)
+    os.system("rm image.svg")

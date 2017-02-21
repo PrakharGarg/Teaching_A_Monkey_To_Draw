@@ -2,6 +2,7 @@ import sys
 import os
 
 from RunCompare import start_comparison
+from MakePhoto import make_photo
 
 # ----
 # main
@@ -9,7 +10,8 @@ from RunCompare import start_comparison
 
 if __name__ == "__main__" :
     index = 2
-    while(index <= 2) :
+    while(index <= 50000) :
+        make_photo(index)
         file_name = 'images/square_' + str(index) + '.png'
         script = "echo " + file_name + " > RunCompare.in"
         os.system(script)
